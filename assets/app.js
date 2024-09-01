@@ -7,4 +7,8 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
+const $ = require('jquery');
+require('bootstrap');
+require('./styles/global.scss');
+
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
