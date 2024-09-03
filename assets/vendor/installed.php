@@ -9,9 +9,9 @@
     array (
     ),
   ),
-  '@hotwired/turbo' => 
+  'tom-select/dist/css/tom-select.default.css' => 
   array (
-    'version' => '7.3.0',
+    'version' => '2.3.1',
     'dependencies' => 
     array (
     ),

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.color-primary {
-    background-color: gray;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
