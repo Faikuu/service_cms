@@ -19,4 +19,24 @@
     array (
     ),
   ),
+  'tom-select' => 
+  array (
+    'version' => '2.3.1',
+    'dependencies' => 
+    array (
+    ),
+    'extraFiles' => 
+    array (
+    ),
+  ),
+  '@hotwired/turbo' => 
+  array (
+    'version' => '7.3.0',
+    'dependencies' => 
+    array (
+    ),
+    'extraFiles' => 
+    array (
+    ),
+  ),
 );
