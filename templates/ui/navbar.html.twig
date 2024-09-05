@@ -1,8 +1,17 @@
 <nav class="bg-secondary flex justify-between align-middle items-center w-screen h-12 px-4">
-    <div>
+    <div class="flex">
         <a class="fa-brands fa-symfony fa-2x" href="/"></a>
     </div>
     <div class="flex justify-end">
+        <div class="mr-4">
+            <form action="{{ path('switch_language') }}" method="post">
+                <select name="lang" onchange="this.form.submit()">
+                    <option value="en" {{ app.request.getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="pl" {{ app.request.getLocale() == 'pl' ? 'selected' : '' }}>Polski</option>
+                </select>
+                <input type="hidden" name="_token" value="{{ csrf_token('switch_language') }}">
+            </form>
+        </div>
         {% if is_logged_in is not null %}
             <a class="fa fa-sign-out fa-2x" href="{{nav_urls.logout}}"></a>
         {% else %}

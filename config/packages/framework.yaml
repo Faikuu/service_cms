@@ -4,10 +4,18 @@ framework:
     #csrf_protection: true
 
     # Note that the session will be started ONLY if you read or write from it.
-    session: true
+    # session: true
 
     #esi: true
     #fragments: true
+    default_locale: 'en'
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - 'en'
+    session:
+        handler_id: null
+        storage_factory_id: session.storage.factory.native
 
 when@test:
     framework:
