@@ -27,12 +27,14 @@ class RegistrationController extends AbstractController
 
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
-            // $user->setRoles(['ROLE_ADMIN']);
+
+            // First user get admin role
+            if ($entityManager->getRepository(User::class)->findAll() === []) {
+                $user->setRoles(['ROLE_ADMIN']);
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();
-
-            // do anything else you need here, like send an email
 
             return $security->login($user, 'form_login', 'main');
         }
