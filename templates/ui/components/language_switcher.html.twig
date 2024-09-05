@@ -1,0 +1,7 @@
+<form action="{{ path('switch_language') }}" method="post" class="flex items-center space-x-2">
+    <select name="lang" onchange="this.form.submit()" class="border rounded">
+        <option value="en" {{ app.request.getLocale() == 'en' ? 'selected' : '' }}>English</option>
+        <option value="pl" {{ app.request.getLocale() == 'pl' ? 'selected' : '' }}>Polski</option>
+    </select>
+    <input type="hidden" name="_token" value="{{ csrf_token('switch_language') }}">
+</form>

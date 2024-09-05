@@ -14,6 +14,9 @@ class UserInterfaceController extends AbstractController
         // get app_login route
         $navUrls['login'] = $this->generateUrl('app_login');
         $navUrls['logout'] = $this->generateUrl('app_logout');
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $navUrls['admin'] = $this->generateUrl('app_adminindex_index');
+        }
         $isLoggedIn = $this->getUser();
         return $this->render('ui/navbar.html.twig', [
             'nav_urls' => $navUrls,
