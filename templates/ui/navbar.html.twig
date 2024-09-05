@@ -1,0 +1,12 @@
+<nav class="bg-secondary flex justify-between align-middle items-center w-screen h-12 px-4">
+    <div>
+        <a class="fa-brands fa-symfony fa-2x" href="/"></a>
+    </div>
+    <div class="flex justify-end">
+        {% if is_logged_in is not null %}
+            <a class="fa fa-sign-out fa-2x" href="{{nav_urls.logout}}"></a>
+        {% else %}
+            <a class="fa fa-sign-in fa-2x" href="{{nav_urls.login}}"></a>
+        {% endif %}
+    </div>
+</nav>

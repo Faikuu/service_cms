@@ -14,7 +14,15 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="bg-zinc-800">
-        {% block body %}{% endblock %}
+    <body class="bg-primary">
+        <div id="content" class="flex flex-col align-middle justify-between min-h-screen">
+            {% block navbar %}
+                {{ render(controller('App\\Controller\\UserInterfaceController::renderNavbar')) }}
+            {% endblock %}
+            {% block body %}{% endblock %}
+            {% block footer %}
+                {{ render(controller('App\\Controller\\UserInterfaceController::renderFooter')) }}
+            {% endblock %}
+        </div>
     </body>
 </html>
