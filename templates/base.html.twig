@@ -19,10 +19,17 @@
             {% block navbar %}
                 {{ render(controller('App\\Controller\\UserInterfaceController::renderNavbar')) }}
             {% endblock %}
-            {% block body %}{% endblock %}
+            <div class="flex flex-row justify-center">
+                {% block sidebar %}
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+                <div></div>
+            </div>
             {% block footer %}
                 {{ render(controller('App\\Controller\\UserInterfaceController::renderFooter')) }}
             {% endblock %}
         </div>
     </body>
 </html>
+
