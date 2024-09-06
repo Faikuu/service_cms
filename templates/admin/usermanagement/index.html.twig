@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Management{% endblock %}
+
+{% block body %}
+<div class="flex flex-col">
+    <h1>{{ 'User Management'|trans }}</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_admin_usermanagement_create') }}">
+                {{ 'Create new user'|trans }}
+            </a>
+        </li>
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{{ 'Email'|trans }}</th>
+                <th>{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}                
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_usermanagement_edit', {id: user.id}) }}">
+                            {{ 'Edit'|trans }}
+                        </a>
+                        <a href="{{ path('app_admin_usermanagement_delete', {id: user.id}) }}">
+                            {{ 'Delete'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
