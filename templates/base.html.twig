@@ -28,6 +28,9 @@
 
             <div class="flex flex-row justify-center">
                 {% block sidebar %}
+                    {% if '/admin' == app.request.pathInfo|slice(0, 6) %}
+                        {{ render(controller('App\\Controller\\UserInterfaceController::renderSidebar')) }}
+                    {% endif %}
                 {% endblock %}
                 {% block body %}
                 {% endblock %}

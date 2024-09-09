@@ -30,4 +30,11 @@ class UserInterfaceController extends AbstractController
             'controller_name' => 'NavbarController',
         ]);
     }
+
+    public function renderSidebar(): Response
+    {
+        return $this->render('ui/sidebar.html.twig', [
+            'controller_name' => 'NavbarController',
+        ]);
+    }
 }
