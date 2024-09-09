@@ -17,7 +17,7 @@ class UserManagementController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         $users = $entityManager->getRepository(User::class)->findAll();
-        // var_dump($users);
+        $this->addFlash('success', 'Test TestTestTest TestTest Test');
 
         return $this->render('admin/usermanagement/index.html.twig', [
             'users' => $users,

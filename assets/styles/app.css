@@ -16,3 +16,8 @@ body {
 .bg-secondary {
     background-color: #3f3f3f;
 }
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-100px); }
+}
