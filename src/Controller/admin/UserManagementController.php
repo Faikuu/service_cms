@@ -11,9 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('admin/users')]
 class UserManagementController extends AbstractController
 {
-    #[Route('admin/users', name: 'app_admin_usermanagement_index')]
+    #[Route('/', name: 'app_admin_usermanagement_index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $users = $entityManager->getRepository(User::class)->findAll();
@@ -24,7 +25,7 @@ class UserManagementController extends AbstractController
         ]);
     }
 
-    #[Route('admin/users/create', name: 'app_admin_usermanagement_create', methods: ['GET', 'POST'])]
+    #[Route('/create', name: 'app_admin_usermanagement_create', methods: ['GET', 'POST'])]
     public function create(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -47,7 +48,7 @@ class UserManagementController extends AbstractController
         ]);
     }
 
-    #[Route('admin/users/{id}/edit', name: 'app_admin_usermanagement_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_admin_usermanagement_edit', methods: ['GET', 'POST'])]
     public function edit(int $id, EntityManagerInterface $entityManager, Request $request): Response
     {
         $user = $entityManager->getRepository(User::class)->find($id);
@@ -73,7 +74,7 @@ class UserManagementController extends AbstractController
         ]);
     }
 
-    #[Route('admin/users/{id}/delete', name: 'app_admin_usermanagement_delete', methods: ['GET'])]
+    #[Route('/{id}/delete', name: 'app_admin_usermanagement_delete', methods: ['GET'])]
     public function delete(int $id, EntityManagerInterface $entityManager): Response
     {
         $user = $entityManager->getRepository(User::class)->find($id);

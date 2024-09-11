@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/admin/catalog')]
 class CatalogItemManagementController extends AbstractController
 {
-    #[Route('admin/catalog', name: 'app_admin_catalogitemmanagement_index')]
+    #[Route('/', name: 'app_admin_catalogitemmanagement_index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $items = $entityManager->getRepository(CatalogItem::class)->findAll();
@@ -21,7 +22,7 @@ class CatalogItemManagementController extends AbstractController
         ]);
     }
 
-    #[Route('admin/catalog/create', name: 'app_admin_catalogitemmanagement_create', methods: ['GET', 'POST'])]
+    #[Route('/create', name: 'app_admin_catalogitemmanagement_create', methods: ['GET', 'POST'])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $item = new CatalogItem();
@@ -40,7 +41,7 @@ class CatalogItemManagementController extends AbstractController
         ]);
     }
 
-    #[Route('admin/catalog/{id}/edit', name: 'app_admin_catalogitemmanagement_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_admin_catalogitemmanagement_edit', methods: ['GET', 'POST'])]
     public function edit(int $id, EntityManagerInterface $entityManager, Request $request): Response
     {
         $item = $entityManager->getRepository(CatalogItem::class)->find($id);
@@ -66,7 +67,7 @@ class CatalogItemManagementController extends AbstractController
         ]);
     }
 
-    #[Route('admin/catalog/{id}/delete', name: 'app_admin_catalogitemmanagement_delete', methods: ['GET'])]
+    #[Route('/{id}/delete', name: 'app_admin_catalogitemmanagement_delete', methods: ['GET'])]
     public function delete(int $id, EntityManagerInterface $entityManager): Response
     {
         $item = $entityManager->getRepository(CatalogItem::class)->find($id);
