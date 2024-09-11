@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalog Management{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">{{ 'Catalog Management'|trans }}</h1>
+
+    <table class="table-auto w-full">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2">{{ 'Name'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Description'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Reference'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Price'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Price Promo'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Promo Until'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Type'|trans }}</th>
+                <th class="px-4 py-2">{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr class="border-b border-gray-300">
+                    <td class="px-4 py-2">{{ item.name }}</td>
+                    <td class="px-4 py-2">{{ item.description }}</td>
+                    <td class="px-4 py-2">{{ item.reference }}</td>
+                    <td class="px-4 py-2">{{ item.price }}</td>
+                    <td class="px-4 py-2">{{ item.pricePromo }}</td>
+                    <td class="px-4 py-2">{{ item.promoUntil }}</td>
+                    <td class="px-4 py-2">{{ item.type }}</td>
+                    <td class="px-4 py-2">
+                        <a href="{{ path('app_admin_catalogmanagement_edit', {id: item.id}) }}" class="text-blue-500 hover:text-blue-700">
+                            {{ 'Edit'|trans }}
+                        </a>
+                        <a href="{{ path('app_admin_catalogmanagement_delete', {id: item.id}) }}" class="text-red-500 hover:text-red-700">
+                            {{ 'Delete'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
