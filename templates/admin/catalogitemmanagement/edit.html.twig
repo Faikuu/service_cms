@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1 class="text-3xl font-bold mb-4">Edit Catalog Item</h1>
+    <h1 class="text-3xl font-bold mb-4">{{ 'Edit catalog item'|trans }}</h1>
 
     {{ form_errors(form) }}
 
@@ -14,6 +14,6 @@
         {{ form_row(form.promo_until, {'label_attr': {'class': 'sr-only'}, 'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md'}}) }}
         {{ form_row(form.type, {'label_attr': {'class': 'sr-only'}, 'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md'}}) }}
 
-        <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Edit</button>
+        <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">{{ 'Edit'|trans }}</button>
     {{ form_end(form) }}
 {% endblock %}
