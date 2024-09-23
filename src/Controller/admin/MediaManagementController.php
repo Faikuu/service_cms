@@ -59,27 +59,34 @@ class MediaManagementController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_mediamanagement_edit', methods: ['GET', 'POST'])]
-    public function edit(int $id, EntityManagerInterface $entityManager, Request $request): Response
+    public function edit(int $id, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, #[Autowire('%kernel.project_dir%/public/uploads/img')] string $mediaDirectory): Response
     {
         $item = $entityManager->getRepository(Media::class)->find($id);
-    
-        if (!$item) {
-            throw $this->createNotFoundException('Media not found.');
-        }
-    
+        $item->setFilename("");
         $form = $this->createForm(MediaUploadFormType::class, $item);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('filename')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move($mediaDirectory, $newFilename);
+                } catch (FileException $e) {
+                }
+                $item->setFilename('/uploads/img/'.$newFilename);
+            }
+
+            $entityManager->persist($item);
             $entityManager->flush();
-    
-            $this->addFlash('success', 'Media has been updated successfully');
-    
+
             return $this->redirectToRoute('app_admin_mediamanagement_index');
         }
-    
-        return $this->render('admin/mediamanagement/edit.html.twig', [
-            'form' => $form->createView(),
+
+        return $this->render('admin/mediamanagement/create.html.twig', [
+            'form' => $form,
         ]);
     }
 
