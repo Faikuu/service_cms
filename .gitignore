@@ -31,3 +31,5 @@ yarn-error.log
 ###< symfony/asset-mapper ###
 
 /public/uploads/
+
+.env

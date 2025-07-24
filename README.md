@@ -19,4 +19,12 @@ Do uruchomienia projektu wymagane są następujące narzędzia:
    ```bash
    git clone https://github.com/Faikuu/service_cms.git
    cd service_cms
+
+2. Zainstaluj potrzebne zależności:
+   ```bash
+   npm install
+   composer install
+
+3. Uruchom środowisko deweloperskie:
+   ```bash
    ./start.sh
