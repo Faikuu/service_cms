@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
+
+            <!-- Sidebar -->
+            <aside class="bg-white rounded-lg shadow p-6 hidden lg:block">
+                <h3 class="text-lg font-semibold border-b pb-3 mb-4">Panel</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-gray-800 bg-blue-50 text-blue-600">
+                            📆 <span>Grafik</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-gray-800 hover:bg-gray-100">
+                            👥 <span>Klienci</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-gray-800 hover:bg-gray-100">
+                            📊 <span>Statystyki</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-gray-800 hover:bg-gray-100">
+                            💰 <span>Wypłaty</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-gray-800 hover:bg-gray-100">
+                            ⚙️ <span>Ustawienia</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <h3 class="text-lg font-semibold border-b pb-3 mt-8 mb-4">Szybkie statystyki</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="text-sm text-gray-500">Dzisiejsze sesje</div>
+                        <div class="text-xl font-bold">4</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500">Aktywni klienci</div>
+                        <div class="text-xl font-bold">28</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <section class="space-y-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold">Grafik</h2>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                        + Nowy termin
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex flex-col gap-6">
+                        <div class="flex flex-wrap gap-4 items-center justify-between border-b pb-4">
+                            <h3 class="text-xl font-semibold">Nadchodzące sesje</h3>
+                            <div class="flex gap-2 flex-wrap">
+                                <input type="text" placeholder="Szukaj..." class="border rounded px-3 py-2 text-sm w-40">
+                                <select class="border rounded px-3 py-2 text-sm">
+                                    <option>Wszystkie</option>
+                                    <option>Personal Training</option>
+                                    <option>Group Training</option>
+                                    <option>Assessment</option>
+                                </select>
+                                <select class="border rounded px-3 py-2 text-sm">
+                                    <option>Każdy</option>
+                                    <option>Confirmed</option>
+                                    <option>Pending</option>
+                                    <option>Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="flex border-b gap-6 text-sm">
+                            <div class="border-b-2 border-blue-600 text-blue-600 font-medium py-2 cursor-pointer">
+                                Lista
+                            </div>
+                            <div class="py-2 text-gray-500 cursor-pointer">
+                                Kalendarz
+                            </div>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full text-sm">
+                                <thead>
+                                    <tr class="text-left text-gray-500 border-b">
+                                        <th class="py-2">Klient</th>
+                                        <th class="py-2">Data</th>
+                                        <th class="py-2">Typ</th>
+                                        <th class="py-2">Długość</th>
+                                        <th class="py-2">Status</th>
+                                        <th class="py-2">Czynności</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for session in sessions %}
+                                        <tr class="border-b hover:bg-blue-50">
+                                            <td class="py-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold">
+                                                        {{ session.initials }}
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-medium">{{ session.name }}</div>
+                                                        <div class="text-xs text-gray-500">{{ session.email }}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-2">{{ session.date }}</td>
+                                            <td class="py-2">
+                                                <span class="px-2 py-1 rounded text-xs font-medium {{ session.typeClass }}">
+                                                    {{ session.typeLabel }}
+                                                </span>
+                                            </td>
+                                            <td class="py-2">{{ session.duration }}</td>
+                                            <td class="py-2">
+                                                <span class="px-2 py-1 rounded text-xs font-medium {{ session.statusClass }}">
+                                                    {{ session.statusLabel }}
+                                                </span>
+                                            </td>
+                                            <td class="py-2 text-gray-500 text-lg">
+                                                ⋮
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="flex justify-center gap-2 mt-6">
+                            <button class="w-9 h-9 border rounded hover:bg-gray-100">«</button>
+                            <button class="w-9 h-9 border bg-blue-600 text-white rounded">1</button>
+                            <button class="w-9 h-9 border rounded hover:bg-gray-100">2</button>
+                            <button class="w-9 h-9 border rounded hover:bg-gray-100">3</button>
+                            <button class="w-9 h-9 border rounded hover:bg-gray-100">»</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

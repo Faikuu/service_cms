@@ -1,10 +1,14 @@
-<nav class="bg-secondary flex justify-between align-middle items-center w-screen h-12 px-4">
+<nav class="bg-secondary flex justify-between align-middle items-center w-screen h-12 px-4 shadow-md">
     <div class="flex">
         <a href="/">
             <i class="fa-brands fa-symfony fa-2x"></i>
         </a>
     </div>
     <div class="flex gap-4 justify-end">
+        <div class="cart-icon" id="cartIcon">
+            <span>🛒</span>
+            <span class="cart-count">3</span>
+        </div>
         <div class="self-center">
             {{ include('ui/components/language_switcher.html.twig') }}
         </div>
