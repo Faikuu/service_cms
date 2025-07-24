@@ -20,7 +20,7 @@ class ProfileIndexController extends AbstractController
 
         foreach ($dbSessions as $session) {
             $typeLabel = 'Personal Training'; // Default or derived from logic
-            $typeClass = 'bg-green-100 text-green-800'; // Can be based on $session->getName() or similar
+            $typeClass = 'bg-green-100 text-green-800';
 
             // Example logic to determine status class
             $statusLabel = $session->getStatusLabel();
